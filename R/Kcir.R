@@ -1,7 +1,7 @@
 #' K-function of a three-dimensional point pattern
 #'
 #' Estimates the K-function from a point pattern on the circle
-#' @param X Circular point pattern (object of class "sph").
+#' @param X Circular point pattern (object of class \code{\link{ppc}}).
 #' @param ... Ignored.
 #' @param r Optional.
 #' Vector of values for the argument r at which \code{K(r)} should be evaluated.
@@ -13,7 +13,7 @@
 #' A large value of nrval is required to avoid discretisation effects.
 #' @details No edge correction have been implemented.
 #' And it is assumede that the data are observed on the entire circle, i.e. the window is the entire circle.
-#' @return A function value table (object of class "fv") that can be plotted, printed or coerced to a data frame containing the function values.
+#' @return A function value table (object of class \code{\link{fv}}) that can be plotted, printed or coerced to a data frame containing the function values.
 #' @author Andreas Dyreborg Christoffersen \email{andreas@math.aau.dk}
 #' @importFrom stats dist
 #' @export

@@ -7,7 +7,7 @@
 Kcir(X, ..., r = NULL, rmax = NULL, nrval = 128)
 }
 \arguments{
-\item{X}{Circular point pattern (object of class "sph").}
+\item{X}{Circular point pattern (object of class \code{\link{ppc}}).}
 
 \item{...}{Ignored.}
 
@@ -23,7 +23,7 @@ Number of values of r for which \code{K3(r)} will be estimated.
 A large value of nrval is required to avoid discretisation effects.}
 }
 \value{
-A function value table (object of class "fv") that can be plotted, printed or coerced to a data frame containing the function values.
+A function value table (object of class \code{\link{fv}}) that can be plotted, printed or coerced to a data frame containing the function values.
 }
 \description{
 Estimates the K-function from a point pattern on the circle
