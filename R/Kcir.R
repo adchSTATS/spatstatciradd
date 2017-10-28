@@ -18,9 +18,8 @@
 #' @importFrom stats dist
 #' @export
 Kcir <- function(X, ..., r = NULL, rmax = NULL, nrval = 128) {
-  stopifnot(inherits(X, "sph"))
-  stopifnot(X$dim == "circle")
-  if(X$window$type != "circle") stop("This function is only iimplemented for data observed on the whole circle")
+  stopifnot(inherits(X, "ppc"))
+  if(X$window$type != "circle") stop("This function is only implemented for data observed on the whole circle")
 
   if(is.null(rmax) && is.null(r)) {
     rmax <- pi
