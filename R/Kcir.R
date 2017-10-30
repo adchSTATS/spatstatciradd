@@ -40,7 +40,7 @@ Kcir <- function(X, ..., r = NULL, rmax = NULL, nrval = 128) {
   win_vol <- 2 * pi
   rho_sq_hat <- np * (np - 1) / win_vol
 
-  dists <- as.matrix(dist(X$ang))
+  dists <- as.matrix(dist(X$data$angs))
   dists_new <- ifelse(dists > pi, 2 * pi - dists, dists)
   K <- as.data.frame(sapply(r, function(x) sum(dists_new <= x) - np) / rho_sq_hat)
   names(K) <- "Kcir"
