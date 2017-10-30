@@ -7,16 +7,16 @@
 car2pol(X, deg = FALSE, unitlength = TRUE)
 }
 \arguments{
-\item{X}{A numerical vector or matrix whos entries constitute a cartesian coordinates.
+\item{X}{A numerical vector or matrix whos columns constitute the x and y cartesian coordinates, respectively.
 A vector should have 2 entries and a matrix should have 2 columns.}
 
 \item{deg}{Logical value indicating whether the output should be in randians or degrees. Radian is default.}
 
-\item{unitlength}{Logical values indicating if the points should be returned with unit length. 
+\item{unitlength}{Logical values indicating if the points should be returned with unit length.
 If TRUE (default) \code{r} will be set to 1.}
 }
 \value{
-A data.frame with 3 columns longitude, latitude and radial distance.
+A data.frame with 2 columns angle and radial distance.
 }
 \description{
 Function for transforming cartesian coordinates to polar coordinates.
