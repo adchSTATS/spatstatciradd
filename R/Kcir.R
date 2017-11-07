@@ -51,30 +51,22 @@ Kcir <- function(X, r = NULL, rmax = NULL, nrval = 128, intenss = NULL, ...) {
   dists_new <- ifelse(dists > pi, 2 * pi - dists, dists)
 
   if (is.null(intenss)) {
-    rho_sq_hat <- win_vol / (np * (np - 1))
-    K <- as.data.frame(sapply(r, function(x) {
-      satisfied <- dists_new <= x
-      diag(satisfied) <- FALSE
-      sum(satisfied)
-    }) * rho_sq_hat)
+    intenss_mat <- matrix(rep((np * (np - 1)) / win_vol, np^2), ncol = np)
+
   } else if (is.vector(intenss)) {
     stopifnot(is.numeric(intenss))
     intenss_mat <- tcrossprod(intenss)
-    K <- as.data.frame(sapply(r, function(x) {
-      satisfied <- dists_new <= x
-      diag(satisfied) <- FALSE
-      sum(satisfied * intenss_mat)
-    }) / win_vol)
   } else if (is.matrix(intenss)) {
     stopifnot(is.numeric(intenss))
     stopifnot(all(c(np, np) == dim(intenss)))
-    K <- as.data.frame(sapply(r, function(x) {
-      satisfied <- dists_new <= x
-      diag(satisfied) <- FALSE
-      sum(satisfied * intenss)
-    }) / win_vol)
+    intenss_mat <- intenss
   }
 
+  K <- as.data.frame(sapply(r, function(x) {
+    satisfied <- dists_new <= x
+    diag(satisfied) <- FALSE
+    sum(satisfied / intenss_mat)
+  }) / win_vol)
   names(K) <- "Kcir"
 
   out <- bind.fv(x = out,
