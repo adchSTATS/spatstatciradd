@@ -4,12 +4,10 @@
 \alias{Kcir}
 \title{K-function of a three-dimensional point pattern}
 \usage{
-Kcir(X, ..., r = NULL, rmax = NULL, nrval = 128)
+Kcir(X, r = NULL, rmax = NULL, nrval = 128, intenss = NULL, ...)
 }
 \arguments{
 \item{X}{Circular point pattern (object of class \code{\link{ppc}}).}
-
-\item{...}{Ignored.}
 
 \item{r}{Optional.
 Vector of values for the argument r at which \code{K(r)} should be evaluated.
@@ -21,6 +19,15 @@ If necessary, specify rmax.}
 \item{nrval}{Optional.
 Number of values of r for which \code{K3(r)} will be estimated.
 A large value of nrval is required to avoid discretisation effects.}
+
+\item{intenss}{Optional.
+Required for computing the inhomogeneous K function.
+Either \code{NULL}, a numeric vector or a numerix matrix.
+If \code{NULL} the homogeneous K function is computed.
+If a numeric vector then it should contain estimated intensities at the observed locations.
+If a matrix then it should contain the product of every pair of estimated intensities.}
+
+\item{...}{Ignored.}
 }
 \value{
 A function value table (object of class \code{\link{fv}}) that can be plotted, printed or coerced to a data frame containing the function values.
