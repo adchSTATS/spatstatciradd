@@ -29,7 +29,7 @@ Kcir <- function(X, r = NULL, rmax = NULL, nrval = 128, intenss = NULL, ...) {
 
   if(is.null(r)) {
     if (is.null(rmax)) {
-      rmax <- pi
+      rmax <- pi / 2
     }
     r <- seq(from = 0, to = rmax, length.out = nrval)
   }
@@ -51,21 +51,21 @@ Kcir <- function(X, r = NULL, rmax = NULL, nrval = 128, intenss = NULL, ...) {
   dists_new <- ifelse(dists > pi, 2 * pi - dists, dists)
 
   if (is.null(intenss)) {
-    intenss_mat <- matrix(rep((np * (np - 1)) / win_vol, np^2), ncol = np)
-
+    recip_intenss_mat <- matrix(rep((win_vol^2) / (np * (np - 1)), np^2), ncol = np)
   } else if (is.vector(intenss)) {
     stopifnot(is.numeric(intenss))
-    intenss_mat <- tcrossprod(intenss)
+    recip_intenss_mat <- 1 / tcrossprod(intenss)
   } else if (is.matrix(intenss)) {
     stopifnot(is.numeric(intenss))
     stopifnot(all(c(np, np) == dim(intenss)))
-    intenss_mat <- intenss
+    recip_intenss_mat <- 1 / intenss
   }
+  diag(recip_intenss_mat) <- 0
 
-  K <- as.data.frame(sapply(r, function(x) {
-    satisfied <- dists_new <= x
+  K <- as.data.frame(sapply(r, function(d) {
+    satisfied <- dists_new <= d
     diag(satisfied) <- FALSE
-    sum(satisfied / intenss_mat)
+    sum(recip_intenss_mat[satisfied])
   }) / win_vol)
   names(K) <- "Kcir"
 
