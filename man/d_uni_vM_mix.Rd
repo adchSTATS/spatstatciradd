@@ -7,7 +7,7 @@
 d_uni_vM_mix(x, mu, kappa, p_unif)
 }
 \arguments{
-\item{x}{A numeric vector representing angles. Is coerced to class \code{\link{circular}}.}
+\item{x}{An object of class \code{\link{ppc}}.}
 
 \item{mu}{Mean direction of the distribution. Is coerced to class \code{\link{circular}}.}
 
